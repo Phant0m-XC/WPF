@@ -13,7 +13,6 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Collections.ObjectModel;
 
 namespace Exam
 {
@@ -25,26 +24,31 @@ namespace Exam
         public MainWindow()
         {
             InitializeComponent();
-            LoginWindow login = new LoginWindow();
-            login.ShowDialog();
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
             if (listView.SelectedItem != null)
             {
-                User user = (User) listView.SelectedItem;
+                User user = (User)listView.SelectedItem;
+                Message message1 = new Message($"{textBox.Text}\n{DateTime.Now}", "me");
+                user.addMessage(message1);
                 TextBlock newTextBlock1 = new TextBlock();
-                newTextBlock1.Text = $"From me:\n{textBox.Text}\n{DateTime.Now}\n";
+                newTextBlock1.Text = $"From {message1.From}:\n{message1.Text}\n";
                 newTextBlock1.HorizontalAlignment = HorizontalAlignment.Left;
+                newTextBlock1.Background = Brushes.Aquamarine;
                 textBox.Text = "";
                 stackPanel.Children.Add(newTextBlock1);
                 ////animation
                 animation(newTextBlock1);
                 ////
+                ////симуляция ответа от пользователя
+                Message message2 = new Message($"Я пока просто пишу текст\n{DateTime.Now}", user.Name);
+                user.addMessage(message2);
                 TextBlock newTextBlock2 = new TextBlock();
-                newTextBlock2.Text = $"From {user.LoginName}:\nЯ пока просто пишу текст\n{DateTime.Now}\n";
+                newTextBlock2.Text = $"From {user.Name}:\n{message2.Text}\n";
                 newTextBlock2.HorizontalAlignment = HorizontalAlignment.Right;
+                newTextBlock2.Background = Brushes.BlanchedAlmond;
                 stackPanel.Children.Add(newTextBlock2);
                 ////animation
                 animation(newTextBlock2);
@@ -75,37 +79,6 @@ namespace Exam
                 button.IsEnabled = false;
             else
                 button.IsEnabled = true;
-        }
-    }
-
-    public class User
-    {
-        private string loginName;
-
-        public User(string loginName)
-        {
-            this.loginName = loginName;
-        }
-
-        public string LoginName
-        {
-            get { return loginName; }
-        }
-
-        public override string ToString()
-        {
-            return loginName;
-        }
-    }
-
-    public class UsersList : ObservableCollection<User>
-    {
-        public UsersList()
-        {
-            Add(new User("Denis"));
-            Add(new User("Aleksej"));
-            Add(new User("Volt"));
-            Add(new User("Elena"));
         }
     }
 }

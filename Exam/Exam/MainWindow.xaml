@@ -44,7 +44,7 @@
                   ItemsSource="{Binding Source={StaticResource UsersInfoDataSource}}">
             <ListView.View>
                 <GridView ColumnHeaderToolTip="Users" AllowsColumnReorder="True">
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=LoginName}"
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Name}"
                             Header="Users" Width="100"/>
                 </GridView>
             </ListView.View>

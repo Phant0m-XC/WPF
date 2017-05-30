@@ -11,7 +11,7 @@
         <Label x:Name="label1" Content="Password:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="textBox" Height="23" Margin="77,13,19,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
         <PasswordBox x:Name="passwordBox" Margin="77,44,19,0" VerticalAlignment="Top" Height="23"/>
-        <Button x:Name="button" Content="Ok" HorizontalAlignment="Left" Margin="10,72,0,12" Width="75" Click="button_Click"/>
-        <Button x:Name="button1" Content="Cancel" Margin="136,72,19,12"/>
+        <Button x:Name="buttonOk" Content="Ok" IsDefault="True" HorizontalAlignment="Left" Margin="10,72,0,12" Width="75" Click="buttonOk_Click"/>
+        <Button x:Name="buttonCancel" Content="Cancel" IsCancel="True" Margin="136,72,19,12" Click="buttonCancel_Click"/>
     </Grid>
 </Window>

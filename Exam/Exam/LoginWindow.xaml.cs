@@ -22,11 +22,19 @@ namespace Exam
         public LoginWindow()
         {
             InitializeComponent();
+            
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
+        private void buttonOk_Click(object sender, RoutedEventArgs e)
         {
+            DialogResult = true;
+            this.Close();
+        }
 
+        private void buttonCancel_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = false;
+            this.Close();
         }
     }
 }
