@@ -13,8 +13,13 @@ namespace Exam
 
         public User(string name)
         {
-            messageList = new List<Message>();
             this.name = name;
+            messageList = new List<Message>();
+        }
+
+        public string Name
+        {
+            get { return name; }
         }
 
         public void addMessage(Message message)
@@ -22,9 +27,9 @@ namespace Exam
             messageList.Add(message);
         }
 
-        public string Name
+        public List<Message> getListMessage()
         {
-            get { return name; }
+            return messageList;
         }
 
         public override string ToString()

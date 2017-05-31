@@ -11,9 +11,9 @@ namespace Exam
     {
         public UsersList()
         {
+            Add(new User("Alex"));
             Add(new User("Denis"));
-            Add(new User("Aleksej"));
-            Add(new User("Volt"));
+            Add(new User("Anton"));
             Add(new User("Elena"));
         }
     }

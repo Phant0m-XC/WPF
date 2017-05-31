@@ -10,15 +10,18 @@ namespace Exam
     {
         private string text;
         private string from;
+
         public Message(string text, string from)
         {
             this.text = text;
             this.from = from;
         }
+
         public string Text
         {
             get { return text; }
         }
+
         public string From
         {
             get { return from; }

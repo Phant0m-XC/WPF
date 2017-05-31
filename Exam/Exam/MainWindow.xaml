@@ -25,6 +25,14 @@
             <Setter Property="FontFamily" Value="Comics Sans MS"/>
             <Setter Property="BorderBrush" Value="CornflowerBlue"/>
         </Style>
+        <Style TargetType="ListViewItem">
+            
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    
+                </Trigger>
+            </Style.Triggers>
+        </Style>
         <Style TargetType="TextBox">
             <Setter Property="FontStyle" Value="Normal"/>
             <Setter Property="FontFamily" Value="Times New Roman"/>
@@ -36,8 +44,10 @@
         <TextBox x:Name="textBox" AcceptsReturn="True" HorizontalAlignment="Left" Height="52"
                  Margin="99,653,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="706"
                  TextChanged="textBox_TextChanged"/>
-        <Button x:Name="button" Content="Отправить" IsEnabled="False" HorizontalAlignment="Left" Margin="810,653,0,0" VerticalAlignment="Top" Width="89" Height="52" Click="button_Click"/>
+        <Button x:Name="button" Content="Отправить" IsEnabled="False" HorizontalAlignment="Left"
+                Margin="810,653,0,0" VerticalAlignment="Top" Width="89" Height="52" Click="button_Click"/>
         <ListView x:Name="listView"
+                  SelectionChanged="listView_SelectionChanged"
                   HorizontalAlignment="Left"
                   Height="638" Margin="607,10,0,0"
                   VerticalAlignment="Top" Width="292"
@@ -49,8 +59,10 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Label x:Name="label" Content="Сообщение" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="10,666,0,0" VerticalAlignment="Top" Height="30" Width="84"/>
-        <ScrollViewer x:Name="scrollViewer" HorizontalScrollBarVisibility="Disabled" BorderBrush="CornflowerBlue" Margin="10,10,306,68">
+        <Label x:Name="label" Content="Сообщение" HorizontalContentAlignment="Center" HorizontalAlignment="Left"
+               Margin="10,666,0,0" VerticalAlignment="Top" Height="30" Width="84"/>
+        <ScrollViewer x:Name="scrollViewer" HorizontalScrollBarVisibility="Disabled" BorderBrush="CornflowerBlue"
+                      Margin="10,10,306,68">
             <StackPanel x:Name="stackPanel" CanVerticallyScroll="True"  Width="556"/>
         </ScrollViewer>
     </Grid>

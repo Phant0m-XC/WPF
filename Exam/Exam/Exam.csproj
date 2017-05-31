@@ -56,6 +56,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Message.cs" />
+    <Compile Include="MessageList.cs" />
     <Compile Include="User.cs" />
     <Compile Include="UsersList.cs" />
     <Page Include="LoginWindow.xaml">
