@@ -24,6 +24,10 @@ namespace Exam
         public MainWindow()
         {
             InitializeComponent();
+            LoginWindow logWin = new LoginWindow();
+            logWin.ShowDialog("login", "pass");
+            if (logWin.DialogResult == false)
+                this.Close();
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
@@ -34,28 +38,11 @@ namespace Exam
                 Message message1 = new Message($"{textBox.Text}\n{DateTime.Now}", "me");
                 user.addMessage(message1);
                 addMessageToDialog(message1);
-                //TextBlock newTextBlock1 = new TextBlock();
-                //newTextBlock1.Text = $"From {message1.From}:\n{message1.Text}\n";
-                //newTextBlock1.HorizontalAlignment = HorizontalAlignment.Left;
-                //newTextBlock1.Background = Brushes.Aquamarine;
                 textBox.Text = "";
-                //stackPanel.Children.Add(newTextBlock1);
-                ////animation
-                //animation(newTextBlock1);
-                ////
                 ////симуляция ответа от пользователя
                 Message message2 = new Message($"Я пока просто пишу текст\n{DateTime.Now}", user.Name);
                 user.addMessage(message2);
                 addMessageToDialog(message2);
-                //TextBlock newTextBlock2 = new TextBlock();
-                //newTextBlock2.Text = $"From {user.Name}:\n{message2.Text}\n";
-                //newTextBlock2.HorizontalAlignment = HorizontalAlignment.Right;
-                //newTextBlock2.Background = Brushes.BlanchedAlmond;
-                //stackPanel.Children.Add(newTextBlock2);
-                ////animation
-                //animation(newTextBlock2);
-                ////
-                //scrollViewer.ScrollToBottom();
             }
         }
 
@@ -73,6 +60,8 @@ namespace Exam
                 textBlock.HorizontalAlignment = HorizontalAlignment.Right;
                 textBlock.Background = Brushes.BlanchedAlmond;
             }
+            textBlock.TextWrapping = TextWrapping.Wrap;
+            textBlock.Margin = new Thickness(5.0);
             stackPanel.Children.Add(textBlock);
             animation(textBlock);
             scrollViewer.ScrollToBottom();

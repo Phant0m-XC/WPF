@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Chat" Height="746.652" Width="915.502" Background="AliceBlue">
     <Window.Resources>
-        <ObjectDataProvider x:Key="UsersInfoDataSource"
+        <ObjectDataProvider x:Key="UsersDataSource"
            ObjectType="{x:Type local:UsersList}"/>
         <Style TargetType="Label">
             <Setter Property="FontStyle" Value="Normal"/>
@@ -51,7 +51,7 @@
                   HorizontalAlignment="Left"
                   Height="638" Margin="607,10,0,0"
                   VerticalAlignment="Top" Width="292"
-                  ItemsSource="{Binding Source={StaticResource UsersInfoDataSource}}">
+                  ItemsSource="{Binding Source={StaticResource UsersDataSource}}">
             <ListView.View>
                 <GridView ColumnHeaderToolTip="Users" AllowsColumnReorder="True">
                     <GridViewColumn DisplayMemberBinding="{Binding Path=Name}"

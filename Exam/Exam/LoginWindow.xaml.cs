@@ -11,30 +11,48 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Media.Animation;
 
 namespace Exam
 {
     /// <summary>
     /// Interaction logic for LoginWindow.xaml
-    /// </summary>
+    /// </summary> 
+
     public partial class LoginWindow : Window
     {
+        private string login;
+        private string pass;
+
         public LoginWindow()
         {
             InitializeComponent();
-            
         }
 
         private void buttonOk_Click(object sender, RoutedEventArgs e)
         {
-            DialogResult = true;
-            this.Close();
+            if (login == textBox.Text && pass == passwordBox.Password)
+            {
+                DialogResult = true;
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Неверный пароль!");
+            }
         }
 
         private void buttonCancel_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = false;
             this.Close();
+        }
+
+        public void ShowDialog(string login, string pass)
+        {
+            this.login = login;
+            this.pass = pass;
+            this.ShowDialog();
         }
     }
 }
