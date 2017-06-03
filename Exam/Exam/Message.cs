@@ -20,11 +20,13 @@ namespace Exam
         public string Text
         {
             get { return text; }
+            set { text = value; }
         }
 
         public string From
         {
             get { return from; }
+            set { from = value; }
         }
     }
 }

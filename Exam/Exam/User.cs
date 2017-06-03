@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 
 namespace Exam
 {
     public class User
     {
         private string name;
-        private List<Message> messageList;
+        private ObservableCollection<Message> messages;
 
         public User(string name)
         {
             this.name = name;
-            messageList = new List<Message>();
+            messages = new ObservableCollection<Message>();
         }
 
         public string Name
@@ -22,19 +23,14 @@ namespace Exam
             get { return name; }
         }
 
-        public void addMessage(Message message)
+        public ObservableCollection<Message> Messages
         {
-            messageList.Add(message);
-        }
-
-        public List<Message> getListMessage()
-        {
-            return messageList;
-        }
-
-        public override string ToString()
-        {
-            return name;
+            get { return messages; }
+            set
+            {
+                if (messages != value)
+                    messages = value;
+            }
         }
     }
 }

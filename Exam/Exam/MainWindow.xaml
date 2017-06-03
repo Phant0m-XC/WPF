@@ -7,8 +7,6 @@
         mc:Ignorable="d"
         Title="Chat" Height="746.652" Width="915.502" Background="AliceBlue">
     <Window.Resources>
-        <ObjectDataProvider x:Key="UsersDataSource"
-           ObjectType="{x:Type local:UsersList}"/>
         <Style TargetType="Label">
             <Setter Property="FontStyle" Value="Normal"/>
             <Setter Property="FontFamily" Value="Times New Roman"/>
@@ -19,19 +17,16 @@
             <Setter Property="FontFamily" Value="Times New Roman"/>
             <Setter Property="FontSize" Value="16"/>
             <Setter Property="BorderBrush" Value="CornflowerBlue"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ElementName=textBox, Path=Text.Length, Mode=OneWay}" Value="0">
+                    <Setter Property="Button.IsEnabled" Value="False" />
+                </DataTrigger>
+            </Style.Triggers>
         </Style>
         <Style TargetType="ListView">
             <Setter Property="FontStyle" Value="Italic"/>
             <Setter Property="FontFamily" Value="Comics Sans MS"/>
             <Setter Property="BorderBrush" Value="CornflowerBlue"/>
-        </Style>
-        <Style TargetType="ListViewItem">
-            
-            <Style.Triggers>
-                <Trigger Property="IsSelected" Value="True">
-                    
-                </Trigger>
-            </Style.Triggers>
         </Style>
         <Style TargetType="TextBox">
             <Setter Property="FontStyle" Value="Normal"/>
@@ -41,17 +36,20 @@
         </Style>
     </Window.Resources>
     <Grid>
+        <Label x:Name="label" Content="Сообщение" HorizontalContentAlignment="Center" HorizontalAlignment="Left"
+               Margin="10,666,0,0" VerticalAlignment="Top" Height="30" Width="84"/>
         <TextBox x:Name="textBox" AcceptsReturn="True" HorizontalAlignment="Left" Height="52"
-                 Margin="99,653,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="706"
-                 TextChanged="textBox_TextChanged"/>
-        <Button x:Name="button" Content="Отправить" IsEnabled="False" HorizontalAlignment="Left"
-                Margin="810,653,0,0" VerticalAlignment="Top" Width="89" Height="52" Click="button_Click"/>
+                 Margin="99,653,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="706"/>
+        <Button x:Name="button" Content="Отправить" HorizontalAlignment="Left" Margin="810,653,0,0"
+                VerticalAlignment="Top" Width="89" Height="52"
+                Command="{Binding AddCommand}" CommandParameter="{Binding Text, ElementName=textBox}" >
+        </Button>
         <ListView x:Name="listView"
-                  SelectionChanged="listView_SelectionChanged"
                   HorizontalAlignment="Left"
                   Height="638" Margin="607,10,0,0"
                   VerticalAlignment="Top" Width="292"
-                  ItemsSource="{Binding Source={StaticResource UsersDataSource}}">
+                  ItemsSource="{Binding Users}"
+                  SelectedItem="{Binding SelectedUser}">
             <ListView.View>
                 <GridView ColumnHeaderToolTip="Users" AllowsColumnReorder="True">
                     <GridViewColumn DisplayMemberBinding="{Binding Path=Name}"
@@ -59,11 +57,42 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Label x:Name="label" Content="Сообщение" HorizontalContentAlignment="Center" HorizontalAlignment="Left"
-               Margin="10,666,0,0" VerticalAlignment="Top" Height="30" Width="84"/>
-        <ScrollViewer x:Name="scrollViewer" HorizontalScrollBarVisibility="Disabled" BorderBrush="CornflowerBlue"
-                      Margin="10,10,306,68">
-            <StackPanel x:Name="stackPanel" CanVerticallyScroll="True"  Width="556"/>
+        <ScrollViewer Margin="10,10,306,68">
+            <ItemsControl ItemsSource="{Binding SelectedUser.Messages}" Width="auto" Height="auto">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel CanVerticallyScroll="True">
+                            <Border BorderBrush="CornflowerBlue" BorderThickness="1" Margin="5">
+                                <TextBlock Width="auto" Height="auto" TextWrapping="Wrap" FontSize="16" Margin="5">
+                                    <Run Text="From: "/>
+                                    <Run Text="{Binding From}"/>
+                                    <LineBreak/>
+                                    <Run Text="{Binding Text}"/>
+                                    <TextBlock.Style>
+                                        <Style>
+                                            <Setter Property="TextBlock.HorizontalAlignment" Value="Left"/>
+                                        </Style>
+                                    </TextBlock.Style>
+                                    <TextBlock.RenderTransform>
+                                        <ScaleTransform x:Name="scaleTransform" ScaleY="0"/>
+                                    </TextBlock.RenderTransform>
+                                    <TextBlock.Triggers>
+                                        <EventTrigger RoutedEvent="TextBlock.Loaded">
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                                                        Storyboard.TargetProperty="ScaleY"
+                                                                        From="0" To="1" Duration="0:0:0.5"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                    </TextBlock.Triggers>
+                                </TextBlock>
+                            </Border>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
         </ScrollViewer>
     </Grid>
 </Window>
