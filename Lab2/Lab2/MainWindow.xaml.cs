@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Threading;
 
 namespace Lab2
 {
@@ -32,24 +33,27 @@ namespace Lab2
         {
             using (var dialog = new FolderBrowserDialog())
             {
-                progress.Visibility = Visibility.Visible;
                 DialogResult result = dialog.ShowDialog();
-                string path = dialog.SelectedPath;
-                string[] pathFiles = Directory.GetFiles(path);
-                progress.Minimum = 0;
-                progress.Maximum = pathFiles.Length;
-                progress.Value = 0;
-                for(int i = 0; i < pathFiles.Length; i++)
+                if (result == System.Windows.Forms.DialogResult.OK)
                 {
-                    if(System.IO.Path.GetExtension(pathFiles[i]).CompareTo(".jpg") == 0 ||
-                        System.IO.Path.GetExtension(pathFiles[i]).CompareTo(".jpeg") == 0 ||
-                        System.IO.Path.GetExtension(pathFiles[i]).CompareTo(".bmp") == 0)
+                    string path = dialog.SelectedPath;
+                    string[] pathFiles = Directory.GetFiles(path);
+                    progress.Minimum = 0;
+                    progress.Maximum = pathFiles.Length;
+                    progress.Value = 0;
+                    progress.Visibility = Visibility.Visible;
+                    for (int i = 0; i < pathFiles.Length; i++)
                     {
-                        comboBox.Items.Add(new BitmapImage(new Uri(pathFiles[i])));
+                        if (System.IO.Path.GetExtension(pathFiles[i]).CompareTo(".jpg") == 0 ||
+                            System.IO.Path.GetExtension(pathFiles[i]).CompareTo(".jpeg") == 0 ||
+                            System.IO.Path.GetExtension(pathFiles[i]).CompareTo(".bmp") == 0)
+                        {
+                            comboBox.Items.Add(new BitmapImage(new Uri(pathFiles[i])));
+                        }
+                        progress.Value++;
                     }
-                    progress.Value++;
+                    comboBox.SelectedIndex = 0;
                 }
-                comboBox.SelectedIndex = 0;
             }
             progress.Visibility = Visibility.Hidden;
         }
@@ -68,6 +72,13 @@ namespace Lab2
                 comboBox.SelectedIndex--;
             else
                 comboBox.SelectedIndex = comboBox.Items.Count - 1;
+        }
+
+        private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            BitmapImage image = comboBox.SelectedItem as BitmapImage;
+            runName.Text = image.ToString();
+            runSize.Text = image.PixelHeight + " x " + image.PixelWidth;
         }
     }
 }
