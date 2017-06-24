@@ -1,0 +1,52 @@
+﻿<Window x:Class="DZ2_2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DZ2_2"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="210" Width="334.364">
+    <Window.Resources>
+        <Style TargetType="ListViewItem">
+            <EventSetter Event="Selected" Handler="ListViewItem_Selected"/>
+        </Style>
+    </Window.Resources>
+    <Grid Name="grid" Margin="0,0,2,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="313*"/>
+            <ColumnDefinition Width="88*"/>
+        </Grid.ColumnDefinitions>
+        <TreeView Margin="0,0,118,0">
+            <TreeViewItem Header="Зима">
+                <ListView>
+                    <ListViewItem Tag="1">Январь</ListViewItem>
+                    <ListViewItem Tag="2">Февраль</ListViewItem>
+                    <ListViewItem Tag="12">Декабрь</ListViewItem>
+                </ListView>
+            </TreeViewItem>
+            <TreeViewItem Header="Весна">
+                <ListView>
+                    <ListViewItem Tag="3">Март</ListViewItem>
+                    <ListViewItem Tag="4">Апрель</ListViewItem>
+                    <ListViewItem Tag="5">Май</ListViewItem>
+                </ListView>
+            </TreeViewItem>
+            <TreeViewItem Header="Лето">
+                <ListView>
+                    <ListViewItem Tag="6">Июнь</ListViewItem>
+                    <ListViewItem Tag="7">Июль</ListViewItem>
+                    <ListViewItem Tag="8">Август</ListViewItem>
+                </ListView>
+            </TreeViewItem>
+            <TreeViewItem Header="Осень">
+                <ListView>
+                    <ListViewItem Tag="9">Сентябрь</ListViewItem>
+                    <ListViewItem Tag="10">Октябрь</ListViewItem>
+                    <ListViewItem Tag="11">Ноябрь</ListViewItem>
+                </ListView>
+            </TreeViewItem>
+        </TreeView>
+        <Calendar Name="calendar" DisplayMode="Month" Margin="140,0,0,0" Grid.ColumnSpan="2"/>
+
+    </Grid>
+</Window>

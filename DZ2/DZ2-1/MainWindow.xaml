@@ -1,0 +1,32 @@
+﻿<Window x:Class="DZ2_1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DZ2_1"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Menu>
+            <MenuItem Header="File">
+                <MenuItem Header="New" Click="MenuItem_New_Click"></MenuItem>
+                <MenuItem Header="Open" Click="MenuItem_Open_Click"></MenuItem>
+                <MenuItem Header="Save"></MenuItem>
+                <MenuItem Header="SaveAs..."></MenuItem>
+                <Separator></Separator>
+                <MenuItem Header="Exit"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Edit">
+                <MenuItem Header="Undo"></MenuItem>
+                <MenuItem Header="Redo"></MenuItem>
+                <Separator></Separator>
+                <MenuItem Header="Cut"></MenuItem>
+                <MenuItem Header="Copy"></MenuItem>
+                <MenuItem Header="Paste"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <RichTextBox x:Name="richTextBox" HorizontalAlignment="Left" Height="283" Margin="10,26,0,0" VerticalAlignment="Top" Width="497">
+            
+        </RichTextBox>
+    </Grid>
+</Window>

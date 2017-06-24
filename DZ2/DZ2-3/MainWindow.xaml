@@ -1,0 +1,30 @@
+﻿<Window x:Class="DZ2_3.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DZ2_3"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="350">
+    <Grid Name="grid" Background="Black">
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Rectangle MouseLeftButtonDown="rectangle_MouseLeftButtonDown" Name="rectangle0" Grid.Row="0" Grid.Column="0"></Rectangle>
+        <Rectangle MouseLeftButtonDown="rectangle_MouseLeftButtonDown" Name="rectangle1" Grid.Row="0" Grid.Column="1"></Rectangle>
+        <Rectangle MouseLeftButtonDown="rectangle_MouseLeftButtonDown" Name="rectangle2" Grid.Row="0" Grid.Column="2"></Rectangle>
+        <Rectangle MouseLeftButtonDown="rectangle_MouseLeftButtonDown" Name="rectangle3" Grid.Row="1" Grid.Column="0"></Rectangle>
+        <Rectangle MouseLeftButtonDown="rectangle_MouseLeftButtonDown" Name="rectangle4" Grid.Row="1" Grid.Column="1"></Rectangle>
+        <Rectangle MouseLeftButtonDown="rectangle_MouseLeftButtonDown" Name="rectangle5" Grid.Row="1" Grid.Column="2"></Rectangle>
+        <Rectangle MouseLeftButtonDown="rectangle_MouseLeftButtonDown" Name="rectangle6" Grid.Row="2" Grid.Column="0"></Rectangle>
+        <Rectangle MouseLeftButtonDown="rectangle_MouseLeftButtonDown" Name="rectangle7" Grid.Row="2" Grid.Column="1"></Rectangle>
+        <Rectangle MouseLeftButtonDown="rectangle_MouseLeftButtonDown" Name="rectangle8" Grid.Row="2" Grid.Column="2"></Rectangle>
+    </Grid>
+</Window>
